@@ -14,6 +14,6 @@ window.addEventListener("DOMContentLoaded", () => {
             } else{
                 invalid.innerHTML = "valid"
             }
-        })
+        }).catch(error=> console.log(error))
     })
 })
