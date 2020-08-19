@@ -1,4 +1,5 @@
 import { getClueFromPromise } from "./promise-version.js";
+import { getClue as getClueFromAsyncFunction } from "./async-await-version.js"
 
 window.addEventListener("DOMContentLoaded", () => {
     document.getElementById('use-promise').addEventListener('click', function(){
@@ -15,5 +16,23 @@ window.addEventListener("DOMContentLoaded", () => {
                 invalid.innerHTML = "valid"
             }
         }).catch(error=> console.log(error))
+    })
+
+    document.getElementById('use-async-await').addEventListener('click' , async function() {
+        try {
+            let data = await getClueFromAsyncFunction();
+            document.getElementById("question").innerHTML = data.question;
+            document.getElementById("answer").innerHTML = data.answer;
+            document.getElementById("value").innerHTML = data.value;
+            document.getElementById("category-title").innerHTML = data.category.title;
+            const invalid = document.getElementById("invalid-count");
+            if(data.invalid_count !== undefined && data.invalid_count > 0){
+                invalid.innerHTML = "invalid"
+            } else{
+                invalid.innerHTML = "valid"
+            }
+        } catch (err) {
+            console.log(err);
+        }
     })
 })
