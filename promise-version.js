@@ -1,16 +1,15 @@
 function getClueFromPromise() {
     // const response = fetch("https://jservice.xyz/api/random-clue")
 
-    fetch("https://jservice.xyz/api/random-clue").then(res=>{
-        console.log(res)
+    return fetch("https://jservice.xyz/api/random-clue").then(res=>{
         if(res.ok === true){
-            return res.json();
+           return res.json();
         } else {
             throw new Error(res.status)
         }
-    }).then(body => {
-        body.json();
-    }).then(json => console.log(json))
+    }).then(data=>{
+        return data;
+    })
 }
 
 export { getClueFromPromise }
